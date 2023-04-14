@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         int numberThread = counter++;
                         Log.d("ThreadProject", String.format("Запущен поток No %d студентом группы No %s номер по списку No %d ", numberThread, "БСБО-03-20", 2));
-                        long endTime = System.currentTimeMillis() + 20 * 1000;
+                        long endTime = System.currentTimeMillis() + 20 * 100;
                         while (System.currentTimeMillis() < endTime) {
                             synchronized (this) {
                                 try {
@@ -47,9 +47,11 @@ public class MainActivity extends AppCompatActivity {
                             }
                             Log.d("ThreadProject", "Выполнен поток No " + numberThread);
                         }
-                        binding.textView.setText((Integer.parseInt(String.valueOf(binding.editTextTextPersonName.getText())) / Integer.parseInt(String.valueOf(binding.editTextTextPersonName2.getText()))));
                     }
                 }).start();
+                Float lessons = Float.parseFloat(binding.editTextTextPersonName.getText().toString());
+                Float days = Float.parseFloat(binding.editTextTextPersonName2.getText().toString());
+                binding.textView.setText("Среднее количество пар в день: " + lessons / days);
             }
         });
     }
